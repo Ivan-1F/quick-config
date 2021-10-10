@@ -96,7 +96,7 @@ public class ExtensionScreen extends Screen {
             }
             if (keyCode == KeyCodes.KEY_ESCAPE) {
                 client.openScreen(null);
-//                this.extension.saveConfig();
+                this.extension.saveConfig();
                 return true;
             }
             return false;
