@@ -45,7 +45,6 @@ public class ParsedExtension {
                                 new TranslatableText(setting.displayName).append(" ").append(status), true
                         );
                     }
-                    System.out.println(setting.value);
                 }
             }
         }
