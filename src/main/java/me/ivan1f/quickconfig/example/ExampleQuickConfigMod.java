@@ -22,6 +22,6 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
     @Override
     public String getOpenGuiHotkey() {
-        return "R,C";
+        return "R + C";
     }
 }

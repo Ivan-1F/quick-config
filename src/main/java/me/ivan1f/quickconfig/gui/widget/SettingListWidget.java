@@ -29,9 +29,9 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
             if (this.setting.type == boolean.class) {
                 this.buttons.add(new ToggleButton(setting));
             }
-//            if (this.setting.withHotkey) {
-//                this.buttons.add(new KeyBindButtonWidget((IConfigHotkey) config, screen));
-//            }
+            if (this.setting.withHotkey) {
+                this.buttons.add(new KeyBindButtonWidget(setting, screen));
+            }
         }
 
         @Override

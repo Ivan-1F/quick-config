@@ -10,7 +10,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class KeyboardManager {
                 }
                 for (ParsedCategory category : extension.categories) {
                     for (ParsedSetting<?> setting : category.settings) {
-                        if (setting.withHotkey && setting.hotkey.equals(keys) && setting.type == boolean.class) {
+                        if (setting.withHotkey && setting.hotkey.toString().equals(keys) && setting.type == boolean.class) {
                             setting.set(!((boolean) setting.value));
                             if (client.player != null) {
                                 Text status = new LiteralText(
@@ -56,34 +55,11 @@ public class KeyboardManager {
             // Up
             PRESSED_KEYS.remove(keycode);
         }
-        onMultikeyUpdate(getStringValue());
+        onMultikeyUpdate(getActiveKeysString());
     }
 
-    public static String getDisplayString() {
-        return getStringValue().replaceAll(",", " + ");
+    public static String getActiveKeysString() {
+        return KeyCodes.keycodesToString(PRESSED_KEYS);
     }
 
-    public static String getStringValue() {
-        StringBuilder sb = new StringBuilder(32);
-
-        for (int i = 0; i < PRESSED_KEYS.size(); ++i) {
-            if (i > 0) {
-                sb.append(",");
-            }
-
-            int keyCode = PRESSED_KEYS.get(i);
-            String name = getStorageStringForKeyCode(keyCode);
-
-            if (name != null) {
-                sb.append(name);
-            }
-        }
-
-        return sb.toString();
-    }
-
-    @Nullable
-    public static String getStorageStringForKeyCode(int keyCode) {
-        return KeyCodes.getNameForKey(keyCode);
-    }
 }

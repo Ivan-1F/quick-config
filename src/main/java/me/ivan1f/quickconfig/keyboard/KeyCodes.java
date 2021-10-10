@@ -6,6 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KeyCodes {
     private static final Int2ObjectOpenHashMap<String> MAP_KEY_TO_NAME = new Int2ObjectOpenHashMap<>();
@@ -150,6 +152,48 @@ public class KeyCodes {
 
     public static int getKeyCodeFromName(String name) {
         return MAP_NAME_TO_KEY.getInt(name);
+    }
+
+    public static String keycodesToString(List<Integer> keycodes) {
+        StringBuilder sb = new StringBuilder(32);
+
+        if (keycodes.size() == 0) {
+            return "NONE";
+        }
+
+        for (int i = 0; i < keycodes.size(); ++i) {
+            if (i > 0) {
+                sb.append(" + ");
+            }
+
+            int keyCode = keycodes.get(i);
+            String name = KeyCodes.getNameForKey(keyCode);
+
+            if (name != null) {
+                sb.append(name);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static List<Integer> stringToKeycodes(String string) {
+        String[] keys = string.split("\\+");
+        ArrayList<Integer> keyCodes = new ArrayList<>();
+
+        for (String keyName : keys) {
+            // TODO: Maybe there are spaces at the start or the end
+            keyName = keyName.trim();
+
+            if (!keyName.isEmpty()) {
+                int keyCode = KeyCodes.getKeyCodeFromName(keyName);
+
+                if (keyCode != KeyCodes.KEY_NONE) {
+                    keyCodes.add(keyCode);
+                }
+            }
+        }
+        return keyCodes;
     }
 
     static {

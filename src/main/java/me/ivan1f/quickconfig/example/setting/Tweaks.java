@@ -7,6 +7,6 @@ import me.ivan1f.quickconfig.setting.WithHotkey;
 @Category
 public class Tweaks {
     @Setting
-    @WithHotkey(hotkey = "R,B")
+    @WithHotkey(hotkey = "R + B")
     public static boolean invisibleCommandBlocks = false;
 }

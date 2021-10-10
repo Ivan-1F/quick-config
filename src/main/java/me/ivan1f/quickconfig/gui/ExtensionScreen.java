@@ -1,7 +1,9 @@
 package me.ivan1f.quickconfig.gui;
 
 import me.ivan1f.quickconfig.extension.ParsedExtension;
+import me.ivan1f.quickconfig.gui.widget.KeyBindButtonWidget;
 import me.ivan1f.quickconfig.gui.widget.SettingListWidget;
+import me.ivan1f.quickconfig.keyboard.KeyCodes;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -20,6 +22,7 @@ public class ExtensionScreen extends Screen {
     private ParsedCategory selected;
     private final Map<ParsedCategory, ButtonWidget> map = new HashMap<>();
     private SettingListWidget listWidget = null;
+    private KeyBindButtonWidget activeKeyBindButton;
 
     public static final int COLOR_WHITE = 0xFFFFFFFF;
     protected static final int LEFT = 8;
@@ -68,5 +71,35 @@ public class ExtensionScreen extends Screen {
         this.listWidget.render(mouseX, mouseY, delta);
         drawTitle();
         super.render(mouseX, mouseY, delta);
+    }
+
+    public void setActiveKeyBindButton(KeyBindButtonWidget button) {
+        if (this.activeKeyBindButton != null) {
+            this.activeKeyBindButton.onClearSelection();
+        }
+
+        this.activeKeyBindButton = button;
+
+        if (this.activeKeyBindButton != null) {
+            this.activeKeyBindButton.onSelected();
+        }
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (this.activeKeyBindButton != null) {
+            this.activeKeyBindButton.onKeyPressed(keyCode);
+            return true;
+        } else {
+            if (this.listWidget.keyPressed(keyCode, scanCode, modifiers)) {
+                return true;
+            }
+            if (keyCode == KeyCodes.KEY_ESCAPE) {
+                client.openScreen(null);
+//                this.extension.saveConfig();
+                return true;
+            }
+            return false;
+        }
     }
 }

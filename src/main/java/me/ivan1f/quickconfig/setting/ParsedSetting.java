@@ -1,11 +1,13 @@
 package me.ivan1f.quickconfig.setting;
 
+import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
+
 import java.lang.reflect.Field;
 
 @SuppressWarnings("unchecked")
 public class ParsedSetting<T> {
     public boolean withHotkey;
-    public String hotkey;
+    public MultiKeyBind hotkey;
     public String displayName;
     public final Class<T> type;
     public T value;
@@ -17,7 +19,7 @@ public class ParsedSetting<T> {
         Setting annotation = field.getAnnotation(Setting.class);
         this.withHotkey = field.isAnnotationPresent(WithHotkey.class);
         if (this.withHotkey) {
-            this.hotkey = field.getAnnotation(WithHotkey.class).hotkey();
+            this.hotkey = new MultiKeyBind(field.getAnnotation(WithHotkey.class).hotkey());
         }
         this.displayName = annotation.name().equals("") ? field.getName() : annotation.name();
         this.type = (Class<T>) field.getType();
