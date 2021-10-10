@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "quick-config",
+  "version": "${version}",
+  "name": "Quick Config",
+  "description": "",
+  "authors": [
+    "Ivan1F"
+  ],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/quick-config/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "me.ivan1f.quickconfig.example.ExampleQuickConfigMod",
+      "me.ivan1f.quickconfig.QuickConfigMod"
+    ]
+  },
+  "mixins": [
+    "quick-config.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.7",
+    "minecraft": "1.15.2"
+  }
+}
