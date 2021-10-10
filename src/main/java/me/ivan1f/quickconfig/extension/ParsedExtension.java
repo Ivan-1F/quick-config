@@ -7,6 +7,7 @@ import me.ivan1f.quickconfig.QuickConfigExtension;
 import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
+import me.ivan1f.quickconfig.translation.INamedObject;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
@@ -18,8 +19,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParsedExtension {
+public class ParsedExtension implements INamedObject {
     public List<ParsedCategory> categories = new ArrayList<>();
+    public String name;
     public String displayName;
     public MultiKeyBind openGuiKey;
     public File configFile;
@@ -27,17 +29,23 @@ public class ParsedExtension {
     private static final MinecraftClient client = MinecraftClient.getInstance();
 
     public ParsedExtension(QuickConfigExtension extension) {
+        this.name = extension.getClass().getSimpleName();
+        this.displayName = extension.getDisplayName().equals("") ? this.name : extension.getDisplayName();
+        this.openGuiKey = new MultiKeyBind(extension.getOpenGuiHotkey());
+        this.configFile = new File("./config", this.name + ".json");
         for (Class<?> category : extension.getCategories()) {
             try {
-                this.categories.add(new ParsedCategory(category));
+                this.categories.add(new ParsedCategory(category, this));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        this.displayName = extension.getDisplayName().equals("") ? extension.getClass().getSimpleName() : extension.getDisplayName();
-        this.openGuiKey = new MultiKeyBind(extension.getOpenGuiHotkey());
-        this.configFile = new File("./config", displayName + ".json");
         this.loadConfig();
+    }
+
+    @Override
+    public String getTranslationKey() {
+        return this.name + ".name";
     }
 
     public void loadConfig() {
@@ -47,9 +55,9 @@ public class ParsedExtension {
                 JsonElement element = parser.parse(new FileReader(this.configFile));
                 JsonObject root = element.getAsJsonObject();
                 for (ParsedCategory category : this.categories) {
-                    JsonObject categoryObj = root.getAsJsonObject(category.displayName);
+                    JsonObject categoryObj = root.getAsJsonObject(category.name);
                     for (ParsedSetting<?> setting : category.settings) {
-                        JsonObject settingObj = categoryObj.getAsJsonObject(setting.displayName);
+                        JsonObject settingObj = categoryObj.getAsJsonObject(setting.name);
                         if (setting.withHotkey) {
                             setting.hotkey = new MultiKeyBind(settingObj.get("hotkey").getAsString());
                         }
@@ -76,9 +84,9 @@ public class ParsedExtension {
                 if (setting.withHotkey) {
                     settingObj.addProperty("hotkey", setting.hotkey.toString());
                 }
-                categoryObj.add(setting.displayName, settingObj);
+                categoryObj.add(setting.name, settingObj);
             }
-            root.add(category.displayName, categoryObj);
+            root.add(category.name, categoryObj);
         }
         try {
             if ((this.configFile.exists() || this.configFile.createNewFile()) && this.configFile.isFile() && this.configFile.canWrite()) {
