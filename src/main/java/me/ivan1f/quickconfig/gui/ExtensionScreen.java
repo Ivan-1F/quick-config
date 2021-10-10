@@ -1,6 +1,7 @@
 package me.ivan1f.quickconfig.gui;
 
 import me.ivan1f.quickconfig.extension.ParsedExtension;
+import me.ivan1f.quickconfig.gui.widget.SettingListWidget;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -13,10 +14,12 @@ import java.util.Map;
 
 public class ExtensionScreen extends Screen {
     private final ParsedExtension extension;
-    private static final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+    private static final MinecraftClient client = MinecraftClient.getInstance();
+    private static final TextRenderer textRenderer = client.textRenderer;
 
     private ParsedCategory selected;
     private final Map<ParsedCategory, ButtonWidget> map = new HashMap<>();
+    private SettingListWidget listWidget = null;
 
     public static final int COLOR_WHITE = 0xFFFFFFFF;
     protected static final int LEFT = 8;
@@ -46,6 +49,9 @@ public class ExtensionScreen extends Screen {
         this.selected = category;
         this.map.values().forEach(btn -> btn.active = true);
         map.get(category).active = false;
+        this.children.remove(listWidget);
+        this.listWidget = new SettingListWidget(client, this, this.selected);
+        this.children.add(this.listWidget);
     }
 
     public void drawString(String str, int x, int y, int color) {
@@ -59,8 +65,8 @@ public class ExtensionScreen extends Screen {
     @Override
     public void render(int mouseX, int mouseY, float delta) {
         this.renderBackground();
+        this.listWidget.render(mouseX, mouseY, delta);
         drawTitle();
-        this.drawString(selected.displayName, 100, 100, COLOR_WHITE);
         super.render(mouseX, mouseY, delta);
     }
 }
