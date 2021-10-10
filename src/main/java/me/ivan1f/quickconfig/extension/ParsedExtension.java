@@ -63,6 +63,8 @@ public class ParsedExtension implements INamedObject {
                         }
                         if (setting.type == boolean.class) {
                             setting.set(settingObj.get("value").getAsBoolean());
+                        } else if (setting.type == String.class) {
+                            setting.set(settingObj.get("value").getAsString());
                         }
                     }
                 }
@@ -80,7 +82,12 @@ public class ParsedExtension implements INamedObject {
             JsonObject categoryObj = new JsonObject();
             for (ParsedSetting<?> setting : category.settings) {
                 JsonObject settingObj = new JsonObject();
-                settingObj.addProperty("value", String.valueOf(setting.value));
+//                settingObj.addProperty("value", String.valueOf(setting.value));
+                if (setting.type == boolean.class) {
+                    settingObj.addProperty("value", (Boolean) setting.value);
+                } else if (setting.type == String.class) {
+                    settingObj.addProperty("value", (String) setting.value);
+                }
                 if (setting.withHotkey) {
                     settingObj.addProperty("hotkey", setting.hotkey.toString());
                 }

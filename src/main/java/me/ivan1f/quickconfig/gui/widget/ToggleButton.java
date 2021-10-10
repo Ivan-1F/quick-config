@@ -7,9 +7,8 @@ import net.minecraft.util.Formatting;
 public class ToggleButton extends ButtonWidget {
     public ToggleButton(ParsedSetting<?> setting) {
         super(0, 0, 40, 20, (boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF", button -> {
-            button.setMessage((boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF");
             setting.set(!((boolean) setting.value));
-//            config.triggerValueChangeCallback();
+            button.setMessage((boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF");
         });
     }
 }
