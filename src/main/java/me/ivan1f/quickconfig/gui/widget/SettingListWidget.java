@@ -58,7 +58,7 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
             TextRenderer textRenderer = SettingListWidget.this.minecraft.textRenderer;
             textRenderer.draw(this.setting.displayName, 10, y + 5, 16777215);
 
-            int currentX = this.screen.width;
+            int currentX = this.screen.width - 10;
             for (AbstractButtonWidget button : this.buttons) {
                 currentX -= button.getWidth() + 5;
                 button.x = currentX;
