@@ -20,6 +20,6 @@ public class ParsedCategory {
             throw new Exception();
         }
         Category annotation = cls.getAnnotation(Category.class);
-        this.displayName = annotation.name().equals("") ? cls.getName() : annotation.name();
+        this.displayName = annotation.name().equals("") ? cls.getSimpleName() : annotation.name();
     }
 }

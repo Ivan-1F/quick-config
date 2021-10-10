@@ -2,6 +2,7 @@ package me.ivan1f.quickconfig.keyboard;
 
 import me.ivan1f.quickconfig.extension.ExtensionManager;
 import me.ivan1f.quickconfig.extension.ParsedExtension;
+import me.ivan1f.quickconfig.gui.ExtensionScreen;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import net.minecraft.client.MinecraftClient;
@@ -22,6 +23,7 @@ public class KeyboardManager {
             for (ParsedExtension extension : ExtensionManager.extensions) {
                 if (extension.openGuiKey.equals(keys)) {
                     System.out.println("Open gui of " + extension);
+                    client.openScreen(new ExtensionScreen(extension));
                 }
                 for (ParsedCategory category : extension.categories) {
                     for (ParsedSetting<?> setting : category.settings) {

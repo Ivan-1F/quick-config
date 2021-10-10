@@ -18,7 +18,7 @@ public class ParsedExtension {
                 e.printStackTrace();
             }
         }
-        this.displayName = extension.getDisplayName().equals("") ? extension.getClass().getName() : extension.getDisplayName();
+        this.displayName = extension.getDisplayName().equals("") ? extension.getClass().getSimpleName() : extension.getDisplayName();
         this.openGuiKey = extension.getOpenGuiHotkey();
     }
 }
