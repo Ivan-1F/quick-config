@@ -6,9 +6,10 @@ import me.ivan1f.quickconfig.setting.ParsedSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,14 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
     }
 
     @Override
-    protected int getScrollbarPosition() {
+    protected int getScrollbarPositionX() {
         return this.width - 10;
     }
 
     public class SettingEntry extends Entry {
         private final ParsedSetting<?> setting;
         private final ExtensionScreen screen;
-        private final List<AbstractButtonWidget> buttons = new ArrayList<>();
+        private final List<ClickableWidget> buttons = new ArrayList<>();
 
         @SuppressWarnings("unchecked")
         public SettingEntry(ParsedSetting<?> setting, ExtensionScreen screen) {
@@ -56,22 +57,22 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
         }
 
         @Override
-        public void render(int index, int y, int x, int width, int height, int mouseX, int mouseY, boolean hovering, float delta) {
-            TextRenderer textRenderer = SettingListWidget.this.minecraft.textRenderer;
-            textRenderer.draw(I18n.translate(this.setting.displayName), 10, y + 5, 16777215);
+        public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            TextRenderer textRenderer = SettingListWidget.this.client.textRenderer;
+            textRenderer.draw(matrices, I18n.translate(this.setting.displayName), 10, y + 5, 16777215);
 
             int currentX = this.screen.width - 10;
-            for (AbstractButtonWidget button : this.buttons) {
+            for (ClickableWidget button : this.buttons) {
                 currentX -= button.getWidth() + 5;
                 button.x = currentX;
                 button.y = y;
-                button.render(mouseX, mouseY, delta);
+                button.render(matrices, mouseX, mouseY, tickDelta);
             }
         }
     }
 
     @Override
-    protected void renderHoleBackground(int top, int bottom, int alphaTop, int alphaBottom) {
+    protected void renderBackground(MatrixStack matrices) {
 
     }
 

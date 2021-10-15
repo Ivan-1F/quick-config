@@ -117,7 +117,7 @@ public class ParsedExtension implements INamedObject {
                         Text status = new LiteralText(
                                 (boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF"
                         );
-                        client.player.addChatMessage(
+                        client.player.sendMessage(
                                 new LiteralText(I18n.translate(setting.displayName)).append(" ").append(status), true
                         );
                     }

@@ -5,6 +5,7 @@ import me.ivan1f.quickconfig.keyboard.KeyCodes;
 import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,7 +17,7 @@ public class KeyBindButtonWidget extends ButtonWidget {
     private final ExtensionScreen parent;
 
     public KeyBindButtonWidget(ParsedSetting<?> setting, ExtensionScreen parent) {
-        super(0, 0, 120, 20, setting.hotkey.toString(), btn -> {
+        super(0, 0, 120, 20, new LiteralText(setting.hotkey.toString()), btn -> {
         });
         this.setting = setting;
         this.hotkey = setting.hotkey;
@@ -79,7 +80,7 @@ public class KeyBindButtonWidget extends ButtonWidget {
     }
 
     public void updateDisplayString() {
-        this.setMessage(this.hotkey.toString());
+        this.setMessage(new LiteralText(this.hotkey.toString()));
         String keyBindStr = this.hotkey.toString();
 
         if (this.hotkey.getKeyCodes().size() == 0 || StringUtils.isBlank(keyBindStr)) {
@@ -87,9 +88,9 @@ public class KeyBindButtonWidget extends ButtonWidget {
         }
 
         if (this.selected) {
-            this.setMessage("> " + Formatting.YELLOW + keyBindStr + Formatting.RESET + " <");
+            this.setMessage(new LiteralText("> " + Formatting.YELLOW + keyBindStr + Formatting.RESET + " <"));
         } else {
-            this.setMessage(keyBindStr);
+            this.setMessage(new LiteralText(keyBindStr));
         }
     }
 }

@@ -10,7 +10,9 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,9 +41,9 @@ public class ExtensionScreen extends Screen {
     protected void init() {
         int x = 8;
         for (ParsedCategory category : this.extension.categories) {
-            int width = textRenderer.getStringWidth(I18n.translate(category.displayName)) + 8;
+            int width = (int) (textRenderer.getTextHandler().getWidth(I18n.translate(category.displayName)) + 8);
             ButtonWidget tabButton = new ButtonWidget(
-                    x, 20, width, 20, I18n.translate(category.displayName), button -> this.onCategorySelected(category));
+                    x, 20, width, 20, new LiteralText(I18n.translate(category.displayName)), button -> this.onCategorySelected(category));
             map.put(category, tabButton);
             x += width + 4;
             this.addButton(tabButton);
@@ -58,20 +60,20 @@ public class ExtensionScreen extends Screen {
         this.children.add(this.listWidget);
     }
 
-    public void drawString(String str, int x, int y, int color) {
-        super.drawString(textRenderer, str, x, y, color);
+    public void drawString(MatrixStack matrices, Text str, int x, int y, int color) {
+        drawTextWithShadow(matrices, textRenderer, str, x, y, color);
     }
 
-    protected void drawTitle() {
-        this.drawString(this.title.asFormattedString(), LEFT, TOP, COLOR_WHITE);
+    protected void drawTitle(MatrixStack matrices) {
+        this.drawString(matrices, this.title, LEFT, TOP, COLOR_WHITE);
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float delta) {
-        this.renderBackground();
-        this.listWidget.render(mouseX, mouseY, delta);
-        drawTitle();
-        super.render(mouseX, mouseY, delta);
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.renderBackground(matrices);
+        this.listWidget.render(matrices, mouseX, mouseY, delta);
+        drawTitle(matrices);
+        super.render(matrices, mouseX, mouseY, delta);
     }
 
     public void setActiveKeyBindButton(KeyBindButtonWidget button) {
