@@ -2,6 +2,7 @@ package me.ivan1f.quickconfig.setting;
 
 import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.translation.INamedObject;
+import me.ivan1f.quickconfig.translation.TranslationUtils;
 
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
@@ -60,6 +61,8 @@ public class ParsedSetting<T> implements INamedObject {
 
     @Override
     public String getTranslationKey() {
-        return (this.category.getTranslationKey().replace("category", "setting")) + "." + this.name;
+        return TranslationUtils.jsonlizeTranslationKey(
+                (this.category.getTranslationKey().replace("category", "setting")) + "." + this.name
+        );
     }
 }

@@ -8,6 +8,7 @@ import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import me.ivan1f.quickconfig.translation.INamedObject;
+import me.ivan1f.quickconfig.translation.TranslationUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -29,7 +30,7 @@ public class ParsedExtension implements INamedObject {
 
     public ParsedExtension(QuickConfigExtension extension) {
         this.name = extension.getClass().getSimpleName();
-        this.displayName = extension.getDisplayName().equals("") ? this.name : extension.getDisplayName();
+        this.displayName = extension.getDisplayName().equals("") ? this.getTranslationKey() : extension.getDisplayName();
         this.openGuiKey = new MultiKeyBind(extension.getOpenGuiHotkey());
         this.configFile = new File("./config", this.name + ".json");
         for (Class<?> category : extension.getCategories()) {
@@ -44,7 +45,7 @@ public class ParsedExtension implements INamedObject {
 
     @Override
     public String getTranslationKey() {
-        return this.name + ".name";
+        return TranslationUtils.jsonlizeTranslationKey(this.name + ".name");
     }
 
     public void loadConfig() {

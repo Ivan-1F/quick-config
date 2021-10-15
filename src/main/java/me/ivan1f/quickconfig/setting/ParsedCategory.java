@@ -2,6 +2,7 @@ package me.ivan1f.quickconfig.setting;
 
 import me.ivan1f.quickconfig.extension.ParsedExtension;
 import me.ivan1f.quickconfig.translation.INamedObject;
+import me.ivan1f.quickconfig.translation.TranslationUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -47,6 +48,6 @@ public class ParsedCategory implements INamedObject {
 
     @Override
     public String getTranslationKey() {
-        return this.extension.name + ".category." + this.name;
+        return TranslationUtils.jsonlizeTranslationKey(this.extension.name + ".category." + this.name);
     }
 }
