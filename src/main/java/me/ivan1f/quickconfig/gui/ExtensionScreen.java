@@ -9,7 +9,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.client.resource.language.I18n;
+import net.minecraft.text.LiteralText;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ExtensionScreen extends Screen {
     protected static final int TOP = 10;
 
     public ExtensionScreen(ParsedExtension extension) {
-        super(new TranslatableText(extension.displayName));
+        super(new LiteralText(I18n.translate(extension.displayName)));
         this.extension = extension;
         this.selected = this.extension.categories.get(0);
     }
@@ -38,9 +39,9 @@ public class ExtensionScreen extends Screen {
     protected void init() {
         int x = 8;
         for (ParsedCategory category : this.extension.categories) {
-            int width = textRenderer.getStringWidth(new TranslatableText(category.displayName).asString()) + 8;
+            int width = textRenderer.getStringWidth(I18n.translate(category.displayName)) + 8;
             ButtonWidget tabButton = new ButtonWidget(
-                    x, 20, width, 20, new TranslatableText(category.displayName).asString(), button -> this.onCategorySelected(category));
+                    x, 20, width, 20, I18n.translate(category.displayName), button -> this.onCategorySelected(category));
             map.put(category, tabButton);
             x += width + 4;
             this.addButton(tabButton);

@@ -8,6 +8,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
+import net.minecraft.client.resource.language.I18n;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
         @Override
         public void render(int index, int y, int x, int width, int height, int mouseX, int mouseY, boolean hovering, float delta) {
             TextRenderer textRenderer = SettingListWidget.this.minecraft.textRenderer;
-            textRenderer.draw(this.setting.displayName, 10, y + 5, 16777215);
+            textRenderer.draw(I18n.translate(this.setting.displayName), 10, y + 5, 16777215);
 
             int currentX = this.screen.width - 10;
             for (AbstractButtonWidget button : this.buttons) {

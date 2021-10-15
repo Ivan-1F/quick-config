@@ -8,9 +8,9 @@ import me.ivan1f.quickconfig.setting.ParsedSetting;
 import me.ivan1f.quickconfig.translation.INamedObject;
 import me.ivan1f.quickconfig.translation.TranslationUtils;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 import java.io.*;
@@ -118,7 +118,7 @@ public class ParsedExtension implements INamedObject {
                                 (boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF"
                         );
                         client.player.addChatMessage(
-                                new TranslatableText(setting.displayName).append(" ").append(status), true
+                                new LiteralText(I18n.translate(setting.displayName)).append(" ").append(status), true
                         );
                     }
                 }
