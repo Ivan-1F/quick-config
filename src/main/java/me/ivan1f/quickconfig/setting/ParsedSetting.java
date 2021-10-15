@@ -16,6 +16,7 @@ public class ParsedSetting<T> implements INamedObject {
     public Consumer<T> onChange;
     public ParsedCategory category;
     public T value;
+    public Field field;
 
     public void setOnChange(Consumer<T> onChange) {
         this.onChange = onChange;
@@ -31,6 +32,7 @@ public class ParsedSetting<T> implements INamedObject {
             this.hotkey = new MultiKeyBind(field.getAnnotation(WithHotkey.class).hotkey());
         }
         this.name = field.getName();
+        this.field = field;
 
         this.category = category;
 
@@ -46,6 +48,11 @@ public class ParsedSetting<T> implements INamedObject {
 
     public void set(Object value) {
         this.value = (T) value;
+        try {
+            this.field.set(null, this.value);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         if (this.onChange != null) {
             this.onChange.accept(this.value);
         }
