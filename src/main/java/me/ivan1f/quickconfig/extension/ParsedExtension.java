@@ -8,7 +8,6 @@ import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import me.ivan1f.quickconfig.translation.INamedObject;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -55,16 +54,20 @@ public class ParsedExtension implements INamedObject {
                 JsonElement element = parser.parse(new FileReader(this.configFile));
                 JsonObject root = element.getAsJsonObject();
                 for (ParsedCategory category : this.categories) {
-                    JsonObject categoryObj = root.getAsJsonObject(category.name);
-                    for (ParsedSetting<?> setting : category.settings) {
-                        JsonObject settingObj = categoryObj.getAsJsonObject(setting.name);
-                        if (setting.withHotkey) {
-                            setting.hotkey = new MultiKeyBind(settingObj.get("hotkey").getAsString());
-                        }
-                        if (setting.type == boolean.class) {
-                            setting.set(settingObj.get("value").getAsBoolean());
-                        } else if (setting.type == String.class) {
-                            setting.set(settingObj.get("value").getAsString());
+                    if (root.has(category.name)) {
+                        JsonObject categoryObj = root.getAsJsonObject(category.name);
+                        for (ParsedSetting<?> setting : category.settings) {
+                            if (categoryObj.has(setting.name)) {
+                                JsonObject settingObj = categoryObj.getAsJsonObject(setting.name);
+                                if (setting.withHotkey) {
+                                    setting.hotkey = new MultiKeyBind(settingObj.get("hotkey").getAsString());
+                                }
+                                if (setting.type == boolean.class) {
+                                    setting.set(settingObj.get("value").getAsBoolean());
+                                } else if (setting.type == String.class) {
+                                    setting.set(settingObj.get("value").getAsString());
+                                }
+                            }
                         }
                     }
                 }
@@ -82,7 +85,6 @@ public class ParsedExtension implements INamedObject {
             JsonObject categoryObj = new JsonObject();
             for (ParsedSetting<?> setting : category.settings) {
                 JsonObject settingObj = new JsonObject();
-//                settingObj.addProperty("value", String.valueOf(setting.value));
                 if (setting.type == boolean.class) {
                     settingObj.addProperty("value", (Boolean) setting.value);
                 } else if (setting.type == String.class) {
