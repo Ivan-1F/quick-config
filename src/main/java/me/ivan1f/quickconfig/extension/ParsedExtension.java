@@ -1,8 +1,6 @@
 package me.ivan1f.quickconfig.extension;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import me.ivan1f.quickconfig.QuickConfigExtension;
 import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
@@ -101,7 +99,8 @@ public class ParsedExtension implements INamedObject {
         try {
             if ((this.configFile.exists() || this.configFile.createNewFile()) && this.configFile.isFile() && this.configFile.canWrite()) {
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.configFile));
-                bufferedWriter.write(root.toString());
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                bufferedWriter.write(gson.toJson(root));
                 bufferedWriter.close();
             }
         } catch (IOException e) {
