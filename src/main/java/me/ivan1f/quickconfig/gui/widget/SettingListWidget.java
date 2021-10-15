@@ -35,13 +35,14 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
         private final ExtensionScreen screen;
         private final List<AbstractButtonWidget> buttons = new ArrayList<>();
 
+        @SuppressWarnings("unchecked")
         public SettingEntry(ParsedSetting<?> setting, ExtensionScreen screen) {
             this.setting = setting;
             this.screen = screen;
             if (this.setting.type == boolean.class) {
-                this.buttons.add(new ToggleButton(setting));
+                this.buttons.add(new ToggleButton((ParsedSetting<Boolean>) setting));
             } else if (this.setting.type == String.class) {
-                this.buttons.add(new TextInputWidget(setting));
+                this.buttons.add(new TextInputWidget((ParsedSetting<String>) setting));
             }
             if (this.setting.withHotkey) {
                 this.buttons.add(new KeyBindButtonWidget(setting, this.screen));
