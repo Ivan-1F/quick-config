@@ -58,13 +58,15 @@ public class ParsedExtension implements INamedObject {
                         for (ParsedSetting<?> setting : category.settings) {
                             if (categoryObj.has(setting.name)) {
                                 JsonObject settingObj = categoryObj.getAsJsonObject(setting.name);
-                                if (setting.withHotkey) {
+                                if (setting.withHotkey && settingObj.has("hotkey")) {
                                     setting.hotkey = new MultiKeyBind(settingObj.get("hotkey").getAsString());
                                 }
-                                if (setting.type == boolean.class) {
-                                    setting.set(settingObj.get("value").getAsBoolean());
-                                } else if (setting.type == String.class) {
-                                    setting.set(settingObj.get("value").getAsString());
+                                if (settingObj.has("value")) {
+                                    if (setting.type == boolean.class) {
+                                        setting.set(settingObj.get("value").getAsBoolean());
+                                    } else if (setting.type == String.class) {
+                                        setting.set(settingObj.get("value").getAsString());
+                                    }
                                 }
                             }
                         }
