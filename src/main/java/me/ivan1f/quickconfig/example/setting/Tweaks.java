@@ -17,7 +17,8 @@ public class Tweaks {
     @ChangeHandler(of = "invisibleCommandBlocks")
     public static final Consumer<Boolean> invisibleCommandBlocksChangeHandler = (value) -> {
         System.out.println("change");
-//        MinecraftClient.getInstance().worldRenderer.reload();
+        if (MinecraftClient.getInstance().worldRenderer != null)
+            MinecraftClient.getInstance().worldRenderer.reload();
     };
     @Setting public static String exampleStringConfig = "";
     @Setting public static boolean exampleSetting1 = false;
