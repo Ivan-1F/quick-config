@@ -1,6 +1,5 @@
 package me.ivan1f.quickconfig.setting;
 
-import me.ivan1f.quickconfig.extension.ParsedExtension;
 import me.ivan1f.quickconfig.translation.INamedObject;
 import me.ivan1f.quickconfig.translation.TranslationUtils;
 
@@ -13,13 +12,14 @@ public class ParsedCategory implements INamedObject {
     public List<ParsedSetting<?>> settings = new ArrayList<>();
     public String name;
     public String displayName;
-    private final ParsedExtension extension;
 
-    public ParsedCategory(Class<?> cls, ParsedExtension extension) throws Exception {
-        this.extension = extension;
-        Category categoryAnnotation = cls.getAnnotation(Category.class);
+    public ParsedCategory(Class<?> cls) throws Exception {
+        if (!cls.isAnnotationPresent(Category.class)) {
+            throw new Exception();
+        }
+
         this.name = cls.getSimpleName();
-        this.displayName = categoryAnnotation.displayName().equals("") ? this.getTranslationKey() : categoryAnnotation.displayName();
+        this.displayName = this.getTranslationKey();
 
         for (Field field : cls.getFields()) {
             if (field.isAnnotationPresent(Setting.class)) {
@@ -41,13 +41,10 @@ public class ParsedCategory implements INamedObject {
                 }
             }
         }
-        if (!cls.isAnnotationPresent(Category.class)) {
-            throw new Exception();
-        }
     }
 
     @Override
     public String getTranslationKey() {
-        return TranslationUtils.jsonlizeTranslationKey(this.extension.name + ".category." + this.name);
+        return "category." + TranslationUtils.lowerFirstCharacter(this.name) + ".name";
     }
 }

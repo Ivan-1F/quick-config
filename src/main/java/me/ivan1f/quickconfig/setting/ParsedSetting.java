@@ -61,8 +61,6 @@ public class ParsedSetting<T> implements INamedObject {
 
     @Override
     public String getTranslationKey() {
-        return TranslationUtils.jsonlizeTranslationKey(
-                (this.category.getTranslationKey().replace("category", "setting")) + "." + this.name
-        );
+        return "setting." + TranslationUtils.lowerFirstCharacter(this.category.name) + "." + this.name;
     }
 }

@@ -24,4 +24,15 @@ public class TranslationUtils {
         }
         return ret.toString();
     }
+
+    public static String lowerFirstCharacter(String str) {
+        StringBuilder parsed = new StringBuilder();
+        if (str.length() > 0) {
+            if (str.charAt(0) >= 'A' && str.charAt(0) <= 'Z') {
+                parsed.append((char) (str.charAt(0) - 'A' + 'a'));
+            }
+            parsed.append(str.substring(1));
+        }
+        return parsed.toString();
+    }
 }
