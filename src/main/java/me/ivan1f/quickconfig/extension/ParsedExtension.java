@@ -28,12 +28,12 @@ public class ParsedExtension implements INamedObject {
 
     public ParsedExtension(QuickConfigExtension extension) {
         this.name = extension.getClass().getSimpleName();
-        this.displayName = extension.getDisplayName().equals("") ? this.getTranslationKey() : extension.getDisplayName();
+        this.displayName = this.getTranslationKey();
         this.openGuiKey = new MultiKeyBind(extension.getOpenGuiHotkey());
         this.configFile = new File("./config", this.name + ".json");
         for (Class<?> category : extension.getCategories()) {
             try {
-                this.categories.add(new ParsedCategory(category, this));
+                this.categories.add(new ParsedCategory(category));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -43,7 +43,7 @@ public class ParsedExtension implements INamedObject {
 
     @Override
     public String getTranslationKey() {
-        return TranslationUtils.jsonlizeTranslationKey(this.name + ".name");
+        return TranslationUtils.lowerFirstCharacter(this.name) + ".name";
     }
 
     public void loadConfig() {

@@ -7,7 +7,4 @@ public interface QuickConfigExtension {
     default String getOpenGuiHotkey() {
         return "J + C";
     }
-    default String getDisplayName() {
-        return "";
-    }
 }

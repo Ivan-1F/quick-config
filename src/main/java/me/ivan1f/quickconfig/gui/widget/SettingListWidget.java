@@ -72,6 +72,10 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
     }
 
     @Override
+    public void render(int mouseX, int mouseY, float delta) {
+        int k = this.getRowLeft();
+        int l = this.top + 4 - (int)this.getScrollAmount();
+        this.renderList(k, l, mouseX, mouseY, delta);
     protected void renderBackground(MatrixStack matrices) {
 
     }
