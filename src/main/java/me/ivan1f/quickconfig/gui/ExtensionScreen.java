@@ -103,4 +103,9 @@ public class ExtensionScreen extends Screen {
             return false;
         }
     }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
 }
