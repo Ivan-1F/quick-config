@@ -1,5 +1,6 @@
 package me.ivan1f.quickconfig.gui.widget;
 
+import com.google.common.collect.ImmutableList;
 import me.ivan1f.quickconfig.gui.ExtensionScreen;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
@@ -32,7 +33,7 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
         return this.width - 10;
     }
 
-    public class SettingEntry extends Entry {
+    public static class SettingEntry extends Entry {
         private final ParsedSetting<?> setting;
         private final ExtensionScreen screen;
         private final List<ClickableWidget> buttons = new ArrayList<>();
@@ -58,15 +59,17 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
 
         @Override
         public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-            TextRenderer textRenderer = SettingListWidget.this.client.textRenderer;
-            textRenderer.draw(matrices, I18n.translate(this.setting.displayName), 10, y + 5, 16777215);
-
             int currentX = this.screen.width - 10;
             for (ClickableWidget button : this.buttons) {
                 currentX -= button.getWidth() + 5;
                 button.x = currentX;
                 button.y = y;
                 button.render(matrices, mouseX, mouseY, tickDelta);
+            }
+            LabelWidget label = new LabelWidget(I18n.translate(this.setting.getName()), 10, y + 5);
+            label.render();
+            if (label.isMouseOver(mouseX, mouseY) && setting.comment) {
+                screen.renderTooltip(ImmutableList.of(I18n.translate(this.setting.getComment())), mouseX, mouseY);
             }
         }
     }

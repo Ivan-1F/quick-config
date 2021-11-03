@@ -41,9 +41,9 @@ public class ExtensionScreen extends Screen {
     protected void init() {
         int x = 8;
         for (ParsedCategory category : this.extension.categories) {
-            int width = (int) (textRenderer.getTextHandler().getWidth(I18n.translate(category.displayName)) + 8);
+            int width = (int) (textRenderer.getTextHandler().getWidth(I18n.translate(category.getName())) + 8);
             ButtonWidget tabButton = new ButtonWidget(
-                    x, 20, width, 20, new LiteralText(I18n.translate(category.displayName)), button -> this.onCategorySelected(category));
+                    x, 20, width, 20, new LiteralText(I18n.translate(category.getName())), button -> this.onCategorySelected(category));
             map.put(category, tabButton);
             x += width + 4;
             this.addButton(tabButton);

@@ -120,7 +120,7 @@ public class ParsedExtension implements INamedObject {
                                 (boolean) setting.value ? Formatting.GREEN + "ON" : Formatting.RED + "OFF"
                         );
                         client.player.sendMessage(
-                                new LiteralText(I18n.translate(setting.displayName)).append(" ").append(status), true
+                                new LiteralText(I18n.translate(setting.getName())).append(" ").append(status), true
                         );
                     }
                 }
