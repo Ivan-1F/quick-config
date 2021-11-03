@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.client.util.math.MatrixStack;
 
 public class LabelWidget implements Element {
     private final String message;
@@ -18,13 +19,13 @@ public class LabelWidget implements Element {
         this.textRenderer = MinecraftClient.getInstance().textRenderer;
     }
 
-    public void render() {
-        this.textRenderer.draw(this.message, x, this.y + 5, 16777215);
+    public void render(MatrixStack matrices) {
+        this.textRenderer.draw(matrices, this.message, x, this.y + 5, 16777215);
     }
 
     @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
-        int width = this.textRenderer.getStringWidth(this.message);
+        int width = this.textRenderer.getWidth(this.message);
         return mouseX >= (double)this.x && mouseY >= (double)this.y && mouseX < (double)(this.x + width) && mouseY < (double)(this.y + 20);
     }
 }
