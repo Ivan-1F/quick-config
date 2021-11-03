@@ -1,10 +1,10 @@
 package me.ivan1f.quickconfig.gui.widget;
 
+import com.google.common.collect.ImmutableList;
 import me.ivan1f.quickconfig.gui.ExtensionScreen;
 import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
@@ -31,7 +31,7 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
         return this.width - 10;
     }
 
-    public class SettingEntry extends Entry {
+    public static class SettingEntry extends Entry {
         private final ParsedSetting<?> setting;
         private final ExtensionScreen screen;
         private final List<AbstractButtonWidget> buttons = new ArrayList<>();
@@ -57,9 +57,11 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
 
         @Override
         public void render(int index, int y, int x, int width, int height, int mouseX, int mouseY, boolean hovering, float delta) {
-            TextRenderer textRenderer = SettingListWidget.this.minecraft.textRenderer;
-            textRenderer.draw(I18n.translate(this.setting.displayName), 10, y + 5, 16777215);
-
+            LabelWidget label = new LabelWidget(I18n.translate(this.setting.displayName), 10, y + 5);
+            label.render();
+            if (label.isMouseOver(mouseX, mouseY) && setting.comment) {
+                screen.renderTooltip(ImmutableList.of(I18n.translate(setting.getTranslationKey() + ".comment")), mouseX, mouseY);
+            }
             int currentX = this.screen.width - 10;
             for (AbstractButtonWidget button : this.buttons) {
                 currentX -= button.getWidth() + 5;

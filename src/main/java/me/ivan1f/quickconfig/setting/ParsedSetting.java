@@ -12,6 +12,7 @@ public class ParsedSetting<T> implements INamedObject {
     public boolean withHotkey;
     public MultiKeyBind hotkey;
     public String name;
+    public boolean comment;
     public String displayName;
     public final Class<T> type;
     public Consumer<T> onChange;
@@ -42,6 +43,7 @@ public class ParsedSetting<T> implements INamedObject {
         } else {
             this.displayName = annotation.displayName();
         }
+        this.comment = annotation.comment();
 
         this.type = (Class<T>) field.getType();
         this.value = (T) field.get(field.getClass());
