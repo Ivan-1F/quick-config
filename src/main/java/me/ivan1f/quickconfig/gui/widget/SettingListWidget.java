@@ -64,7 +64,7 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
                 button.y = y;
                 button.render(mouseX, mouseY, delta);
             }
-            LabelWidget label = new LabelWidget(I18n.translate(this.setting.getName()), 10, y + 5);
+            LabelWidget label = new LabelWidget(I18n.translate(this.setting.getName()), 10, y);
             label.render();
             if (label.isMouseOver(mouseX, mouseY) && setting.comment) {
                 screen.renderTooltip(ImmutableList.of(I18n.translate(this.setting.getComment())), mouseX, mouseY);
