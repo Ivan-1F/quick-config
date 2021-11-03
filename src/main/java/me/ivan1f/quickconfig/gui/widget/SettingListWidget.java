@@ -57,10 +57,10 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
 
         @Override
         public void render(int index, int y, int x, int width, int height, int mouseX, int mouseY, boolean hovering, float delta) {
-            LabelWidget label = new LabelWidget(I18n.translate(this.setting.displayName), 10, y + 5);
+            LabelWidget label = new LabelWidget(I18n.translate(this.setting.getName()), 10, y + 5);
             label.render();
             if (label.isMouseOver(mouseX, mouseY) && setting.comment) {
-                screen.renderTooltip(ImmutableList.of(I18n.translate(setting.getTranslationKey() + ".comment")), mouseX, mouseY);
+                screen.renderTooltip(ImmutableList.of(I18n.translate(this.setting.getComment())), mouseX, mouseY);
             }
             int currentX = this.screen.width - 10;
             for (AbstractButtonWidget button : this.buttons) {

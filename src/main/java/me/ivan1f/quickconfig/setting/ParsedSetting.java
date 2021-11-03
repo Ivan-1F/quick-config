@@ -2,7 +2,6 @@ package me.ivan1f.quickconfig.setting;
 
 import me.ivan1f.quickconfig.keyboard.MultiKeyBind;
 import me.ivan1f.quickconfig.translation.INamedObject;
-import me.ivan1f.quickconfig.translation.TranslationUtils;
 
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
@@ -13,7 +12,6 @@ public class ParsedSetting<T> implements INamedObject {
     public MultiKeyBind hotkey;
     public String name;
     public boolean comment;
-    public String displayName;
     public final Class<T> type;
     public Consumer<T> onChange;
     public ParsedCategory category;
@@ -38,11 +36,6 @@ public class ParsedSetting<T> implements INamedObject {
 
         this.category = category;
 
-        if (annotation.displayName().equals("")) {
-            this.displayName = this.getTranslationKey();
-        } else {
-            this.displayName = annotation.displayName();
-        }
         this.comment = annotation.comment();
 
         this.type = (Class<T>) field.getType();
@@ -61,8 +54,16 @@ public class ParsedSetting<T> implements INamedObject {
         }
     }
 
+    public String getName() {
+        return this.getTranslationKey() + ".name";
+    }
+
+    public String getComment() {
+        return this.getTranslationKey() + ".comment";
+    }
+
     @Override
     public String getTranslationKey() {
-        return "setting." + TranslationUtils.lowerFirstCharacter(this.category.name) + "." + this.name;
+        return "setting." + this.category.name + "." + this.name;
     }
 }

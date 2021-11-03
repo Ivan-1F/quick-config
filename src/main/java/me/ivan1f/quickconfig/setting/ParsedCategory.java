@@ -8,18 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings(value={"unchecked", "rawtypes"})
 public class ParsedCategory implements INamedObject {
     public List<ParsedSetting<?>> settings = new ArrayList<>();
     public String name;
-    public String displayName;
 
     public ParsedCategory(Class<?> cls) throws Exception {
         if (!cls.isAnnotationPresent(Category.class)) {
             throw new Exception();
         }
 
-        this.name = cls.getSimpleName();
-        this.displayName = this.getTranslationKey();
+        this.name = TranslationUtils.lowerFirstCharacter(cls.getSimpleName());
 
         for (Field field : cls.getFields()) {
             if (field.isAnnotationPresent(Setting.class)) {
@@ -43,8 +42,12 @@ public class ParsedCategory implements INamedObject {
         }
     }
 
+    public String getName() {
+        return this.getTranslationKey() + ".name";
+    }
+
     @Override
     public String getTranslationKey() {
-        return "category." + TranslationUtils.lowerFirstCharacter(this.name) + ".name";
+        return "category." + this.name;
     }
 }
