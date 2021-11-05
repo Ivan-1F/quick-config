@@ -1,6 +1,6 @@
 # quick-config documentation
 
-This is a lib mod that helps you create malilib-styled configure gui easily.
+This is a lib mod that helps you create malilib-styled configure gui easily
 
 ## Set up the environment
 
