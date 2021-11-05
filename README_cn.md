@@ -4,7 +4,7 @@
 
 这是一个客户端 mod，不依赖 Fabric API
 
-![preview](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/preview.png?raw=true)
+![preview](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/preview.png?raw=true)
 
 ### 模组开发者
 
