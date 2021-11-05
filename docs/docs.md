@@ -9,7 +9,7 @@ This is a lib mod that helps you create malilib-styled configure gui easily.
 2. Add the following lines to the `dependencies` block in the `build.gradle` file:
 
 ```groovy
-modImplementation files("libs/quick-config-mc1.16.5-1.0.0.jar")
+modImplementation files("libs/quick-config-mc1.16.5-1.0.0.jar")     // Replace with the actual filename
 ```
 
 3. Reload gradle to index new dependencies
@@ -61,7 +61,7 @@ Now, run the game, join a world or connect to a server, press the key you have s
 
 ## Add a category
 
-Using `quick-config`, you can create a lot of `setting` to your mod. `quick-config` will automatically generate a gui screen that let the player control all the settings
+Using `quick-config`, you can create a lot of `setting` to your extension. `quick-config` will automatically generate a gui screen that let the player control all the settings and save the user data at `minecraft/config/<Extension Name>.json`
 
 Settings rely on categories. So first, we will add a category to our extension:
 
@@ -163,15 +163,15 @@ public class Tweaks {
 
 ## Translation
 
-You may notice that all the texts in the gui are showed as translation keys. So you can provide different languages for your mod easily
+You may notice that all the texts in the gui are showed as translation keys. So you can provide different languages for your extension easily
 
 `quick-config` will translate all the text to formatted translation keys:
 
-|Text|Translation Key|Example|Snapshot|
-|---|---|---|---|
-|Mod name|\<modName\>.name|clientTweaks.name||
-|Category name|category.\<categoryName\>.name|category.tweaks.name||
-|Setting name|setting.\<categoryName\>.\<settingName\>.name|setting.tweaks.fastRightClick.name||
-|Setting comment|setting.\<categoryName\>.\<settingName\>.comment|setting.tweaks.fastRightClick.comment||
+|Text|Translation Key|Explanation|Example|Snapshot|
+|---|---|---|---|---|
+|Extension name|\<extensionName\>.name|\<extensionName\> is the name of the entry class of the extension (which implements the `QuickConfigExtension` interface), will be converted to lower camel case|clientTweaks.name||
+|Category name|category.\<categoryName\>.name|\<categoryName\> is the name of the category class, will be converted to lower camel case|category.tweaks.name||
+|Setting name|setting.\<categoryName\>.\<settingName\>.name|\<settingName\> is the name of the setting field|setting.tweaks.fastRightClick.name||
+|Setting comment|setting.\<categoryName\>.\<settingName\>.comment|The same as above|setting.tweaks.fastRightClick.comment||
 
 Just follow the [Fabric wiki](https://fabricmc.net/wiki/tutorial:lang) to create lang files, then the text will be displayed correctly

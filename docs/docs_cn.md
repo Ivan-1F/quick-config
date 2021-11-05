@@ -9,7 +9,7 @@
 2. 在 `build.gradle` 文件下的 `dependencies` 代码块中添加下列内容：
 
 ```groovy
-modImplementation files("libs/quick-config-mc1.16.5-1.0.0.jar")
+modImplementation files("libs/quick-config-mc1.16.5-1.0.0.jar")     // 替换为实际的文件名
 ```
 
 3. 重载 gradle 项目来索引新依赖
@@ -61,7 +61,7 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
 ## 添加一个分类
 
-使用 `quick-config`, 你可以向你的 mod 创建很多 `setting (选项)`。 `quick-config` 会自动生成一个 gui 界面，玩家可以在那里控制所有的选项
+使用 `quick-config`, 你可以向你的扩展创建很多 `setting (选项)`。 `quick-config` 会自动生成一个 gui 界面，玩家可以在那里控制所有的选项。用户数据会被存放在 `minecraft/config/<扩展名>.json`
 
 选项依赖于分类，所以首先，我们将为我们的扩展添加一个分类
 
@@ -165,16 +165,16 @@ public class Tweaks {
 
 ## 翻译
 
-你可能注意到了，gui 中所有的文字都被显示为了翻译键。所以你可以方便地为你的 mod 提供多种语言支持
+你可能注意到了，gui 中所有的文字都被显示为了翻译键。所以你可以方便地为你的扩展提供多种语言支持
 
 
 `quick-config` 将会把所有的显示的文字转换为格式化过的翻译键：
 
-|文字|翻译键|例子|截图|
-|---|---|---|---|
-|Mod 名称|\<modName\>.name|clientTweaks.name||
-|分类名称|category.\<categoryName\>.name|category.tweaks.name||
-|选项名称|setting.\<categoryName\>.\<settingName\>.name|setting.tweaks.fastRightClick.name||
-|选项注释|setting.\<categoryName\>.\<settingName\>.comment|setting.tweaks.fastRightClick.comment||
+|文字|翻译键|解释|例子|截图|
+|---|---|---|---|---|
+|扩展名称|\<扩展名\>.name|\<扩展名\> 为扩展入口类（实现 `QuickConfigExtension` 接口）的名称，转换为小驼峰命名|clientTweaks.name||
+|分类名称|category.\<分类名称\>.name|\<分类名称\> 为分类类的名称，转换为小驼峰命名|category.tweaks.name||
+|选项名称|setting.\<分类名称\>.\<选项名称\>.name|\<选项名称\> 为选项变量的名称|setting.tweaks.fastRightClick.name||
+|选项注释|setting.\<分类名称\>.\<选项名称\>.comment|同上|setting.tweaks.fastRightClick.comment||
 
 根据 [Fabric wiki](https://fabricmc.net/wiki/tutorial:lang) 创建 lang 文件，文字就会正确显示了
