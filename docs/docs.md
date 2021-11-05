@@ -119,7 +119,7 @@ public class Tweaks {
 
 Now run the game, and open the gui, you will now see the settings under your category
 
-![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/setting.png&raw=true)
+![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/setting.png?raw=true)
 
 ### Adding a comment to a setting
 

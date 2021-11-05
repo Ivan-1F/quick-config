@@ -4,6 +4,8 @@
 
 这是一个客户端 mod，不依赖 Fabric API
 
+![preview](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/preview.png?raw=true)
+
 ### 模组开发者
 
 想要创建一个由 quick-config 驱动的 mod？

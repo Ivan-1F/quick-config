@@ -119,7 +119,7 @@ public class Tweaks {
 
 现在运行游戏，打开 gui，你将会在这个分类下看到这个选项
 
-![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/setting.png&raw=true)
+![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/setting.png?raw=true)
 
 ### 向选项添加注释
 
