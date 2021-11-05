@@ -1,5 +1,7 @@
 ## quick-config
 
+[English](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/README.md) / **中文**
+
 这是一个库模组来帮助你快速构建 `malilib` 风格的配置界面
 
 这是一个客户端 mod，不依赖 Fabric API
