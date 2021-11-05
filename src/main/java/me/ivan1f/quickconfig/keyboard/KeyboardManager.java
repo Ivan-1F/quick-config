@@ -16,7 +16,7 @@ public class KeyboardManager {
             for (ParsedExtension extension : ExtensionManager.extensions) {
                 if (extension.openGuiKey.isPressed()) {
                     System.out.println("Open gui of " + extension);
-                    client.openScreen(new ExtensionScreen(extension));
+                    client.setScreen(new ExtensionScreen(extension));
                 }
                 extension.onMultikeyUpdate(new MultiKeyBind(keys));
             }

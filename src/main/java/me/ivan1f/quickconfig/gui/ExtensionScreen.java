@@ -46,7 +46,7 @@ public class ExtensionScreen extends Screen {
                     x, 20, width, 20, new LiteralText(I18n.translate(category.getName())), button -> this.onCategorySelected(category));
             map.put(category, tabButton);
             x += width + 4;
-            this.addButton(tabButton);
+            this.addDrawable(tabButton);
         }
         onCategorySelected(this.selected);
     }
@@ -55,9 +55,9 @@ public class ExtensionScreen extends Screen {
         this.selected = category;
         this.map.values().forEach(btn -> btn.active = true);
         map.get(category).active = false;
-        this.children.remove(listWidget);
+        this.remove(listWidget);
         this.listWidget = new SettingListWidget(client, this, this.selected);
-        this.children.add(this.listWidget);
+        this.addDrawableChild(this.listWidget);
     }
 
     public void drawString(MatrixStack matrices, Text str, int x, int y, int color) {
@@ -98,7 +98,7 @@ public class ExtensionScreen extends Screen {
                 return true;
             }
             if (keyCode == KeyCodes.KEY_ESCAPE) {
-                client.openScreen(null);
+                client.setScreen(null);
                 this.extension.saveConfig();
                 return true;
             }

@@ -6,6 +6,7 @@ import me.ivan1f.quickconfig.setting.ParsedCategory;
 import me.ivan1f.quickconfig.setting.ParsedSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.resource.language.I18n;
@@ -71,6 +72,11 @@ public class SettingListWidget extends ElementListWidget<SettingListWidget.Entry
             if (label.isMouseOver(mouseX, mouseY) && setting.comment) {
                 screen.renderTooltip(matrices, ImmutableList.of(new LiteralText(I18n.translate(this.setting.getComment()))), mouseX, mouseY);
             }
+        }
+
+        @Override
+        public List<? extends Selectable> selectableChildren() {
+            return this.buttons;
         }
     }
 
