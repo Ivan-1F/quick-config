@@ -169,9 +169,9 @@ public class Tweaks {
 }
 ```
 
-![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey1.png&raw=true)
-![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey2.png&raw=true)
-![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey3)
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey1.png?raw=true)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey2.png?raw=true)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey3.png?raw=true)
 
 ## Translation
 
