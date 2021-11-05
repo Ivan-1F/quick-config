@@ -57,8 +57,6 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
 你可以使用 `+` 连接多个按键来创建一个组合键，它会在所有按键都被以正确的顺序按下时触发
 
-现在，运行游戏，加入一个世界或连接到一个服务器，按下设置好的快捷键。如果一个空白的窗口出现来，恭喜你，你已经成功创建了一个 `quick-config` 插件
-
 ## 添加一个分类
 
 使用 `quick-config`, 你可以向你的扩展创建很多 `setting (选项)`。 `quick-config` 会自动生成一个 gui 界面，玩家可以在那里控制所有的选项。用户数据会被存放在 `minecraft/config/<扩展名>.json`
@@ -97,11 +95,17 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 }
 ```
 
-现在运行游戏，打开 gui，你将会看到分类选项卡
+现在运行游戏，加入一个世界或连接到一个服务器，打开 gui，你将会看到分类选项卡
+
+![category](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/category.png)
+
+**注意：** 一个扩展**必须**存在至少一个分类，不然玩家尝试打开 gui 时客户端会崩溃
 
 ## 添加一个选项
 
 向分类添加一个选项非常简单，声明一个 **静态的公开** 变量并为其添加 `@Setting` 注解：
+
+你可以用这种方式访问选项的值：`Tweaks.exampleBooleanSetting`
 
 ```java
 @Category
@@ -114,6 +118,8 @@ public class Tweaks {
 ```
 
 现在运行游戏，打开 gui，你将会在这个分类下看到这个选项
+
+![setting](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/setting.png)
 
 ### 向选项添加注释
 
@@ -130,6 +136,8 @@ public class Tweaks {
 ```
 
 现在当玩家将鼠标移过选项的名称时，一段提示将会出现
+
+![comment](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/comment.png)
 
 ## 选项改变事件
 
@@ -162,6 +170,10 @@ public class Tweaks {
     public static boolean exampleBooleanSetting = false;
 }
 ```
+
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey1.png)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey2.png)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey3.png)
 
 ## 翻译
 

@@ -57,8 +57,6 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
 You can use `+` to connect each key to create a multi keybinding, it will be trigger when all the keys are pressed in the correct order
 
-Now, run the game, join a world or connect to a server, press the key you have set. If a blank window appears, congratulations, you have created a `quick-config` extension successfully
-
 ## Add a category
 
 Using `quick-config`, you can create a lot of `setting` to your extension. `quick-config` will automatically generate a gui screen that let the player control all the settings and save the user data at `minecraft/config/<Extension Name>.json`
@@ -97,11 +95,17 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 }
 ```
 
-Now run the game, and open the gui, you will now see the category tabs
+Now run the game, join a world or connect to a server and open the gui, you will now see the category tabs
+
+![category](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/category.png)
+
+**Note:** There **must** be at least one category, otherwise the client will crash when the player tries to open the gui
 
 ## Add a setting
 
 Adding a setting to a category is very simple, simply declare a **static and public** field in the category class and add the `@Setting` annotation to it:
+
+You can access the value of settings in this way: `Tweaks.exampleBooleanSetting`
 
 ```java
 @Category
@@ -114,6 +118,8 @@ public class Tweaks {
 ```
 
 Now run the game, and open the gui, you will now see the settings under your category
+
+![setting](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/setting.png)
 
 ### Adding a comment to a setting
 
@@ -128,6 +134,8 @@ public class Tweaks {
 ```
 
 Now when the player hovers the name of the setting in the gui, a tip will appear
+
+![comment](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/comment.png)
 
 ## Change handlers
 
@@ -160,6 +168,10 @@ public class Tweaks {
     public static boolean exampleBooleanSetting = false;
 }
 ```
+
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey1.png)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey2.png)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey3.png)
 
 ## Translation
 
