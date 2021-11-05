@@ -8,4 +8,4 @@
 
 想要创建一个由 quick-config 驱动的 mod？
 
-[查阅文档](https://github.com/Ivan-1F/quick-config/blob/master/docs/docs_cn.md) 或 [查看示例 mod: client-tweaks](https://github.com/Ivan-1F/client-tweaks)
+[查阅文档](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/docs/docs_cn.md) 或 [查看示例 mod: client-tweaks](https://github.com/Ivan-1F/client-tweaks)

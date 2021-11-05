@@ -97,7 +97,7 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
 现在运行游戏，加入一个世界或连接到一个服务器，打开 gui，你将会看到分类选项卡
 
-![category](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/category.png)
+![category](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/category.png&raw=true)
 
 **注意：** 一个扩展**必须**存在至少一个分类，不然玩家尝试打开 gui 时客户端会崩溃
 
@@ -119,7 +119,7 @@ public class Tweaks {
 
 现在运行游戏，打开 gui，你将会在这个分类下看到这个选项
 
-![setting](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/setting.png)
+![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/setting.png&raw=true)
 
 ### 向选项添加注释
 
@@ -137,7 +137,7 @@ public class Tweaks {
 
 现在当玩家将鼠标移过选项的名称时，一段提示将会出现
 
-![comment](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/comment.png)
+![comment](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/comment.png&raw=true)
 
 ## 选项改变事件
 
@@ -171,9 +171,9 @@ public class Tweaks {
 }
 ```
 
-![hotkey1](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey1.png)
-![hotkey2](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey2.png)
-![hotkey3](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey3.png)
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey1.png&raw=true)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey2.png&raw=true)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey3.png&raw=true)
 
 ## 翻译
 

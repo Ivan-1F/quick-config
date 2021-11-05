@@ -97,7 +97,7 @@ public class ExampleQuickConfigMod implements ModInitializer, QuickConfigExtensi
 
 Now run the game, join a world or connect to a server and open the gui, you will now see the category tabs
 
-![category](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/category.png)
+![category](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/category.png?raw=true)
 
 **Note:** There **must** be at least one category, otherwise the client will crash when the player tries to open the gui
 
@@ -119,7 +119,7 @@ public class Tweaks {
 
 Now run the game, and open the gui, you will now see the settings under your category
 
-![setting](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/setting.png)
+![setting](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/setting.png&raw=true)
 
 ### Adding a comment to a setting
 
@@ -135,7 +135,7 @@ public class Tweaks {
 
 Now when the player hovers the name of the setting in the gui, a tip will appear
 
-![comment](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/comment.png)
+![comment](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/comment.png&raw=true)
 
 ## Change handlers
 
@@ -169,9 +169,9 @@ public class Tweaks {
 }
 ```
 
-![hotkey1](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey1.png)
-![hotkey2](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey2.png)
-![hotkey3](https://github.com/Ivan-1F/quick-config/blob/master/screeshots/docs/hotkey3.png)
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey1.png&raw=true)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey2.png&raw=true)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey3)
 
 ## Translation
 
