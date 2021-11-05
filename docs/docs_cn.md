@@ -125,8 +125,6 @@ public class Tweaks {
 
 如果你想对一个选项提供更详细的说明，你可以将 `@Setting` 注解的 `comment` 属性设为 `true`
 
-If you want to provide detailed information of a setting, you can set `comment` attribute of `@Setting` to true:
-
 ```java
 @Category
 public class Tweaks {
@@ -178,7 +176,6 @@ public class Tweaks {
 ## 翻译
 
 你可能注意到了，gui 中所有的文字都被显示为了翻译键。所以你可以方便地为你的扩展提供多种语言支持
-
 
 `quick-config` 将会把所有的显示的文字转换为格式化过的翻译键：
 
