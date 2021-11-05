@@ -135,7 +135,7 @@ public class Tweaks {
 
 Now when the player hovers the name of the setting in the gui, a tip will appear
 
-![comment](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/comment.png&raw=true)
+![comment](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/comment.png&raw=true)
 
 ## Change handlers
 
@@ -169,9 +169,9 @@ public class Tweaks {
 }
 ```
 
-![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey1.png&raw=true)
-![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey2.png&raw=true)
-![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screeshots/docs/hotkey3)
+![hotkey1](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey1.png&raw=true)
+![hotkey2](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey2.png&raw=true)
+![hotkey3](https://github.com/Ivan-1F/quick-config/blob/fabric-1.15.2/screenshots/docs/hotkey3)
 
 ## Translation
 
